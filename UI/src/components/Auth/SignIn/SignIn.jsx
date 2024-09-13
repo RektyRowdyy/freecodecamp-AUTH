@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom'
 
 export default function SignIn() {
     return (
-        <section className="bg-gray-100 h-screen">
-            <div className="flex items-center justify-center px-4 py-32">
+        <section className="bg-gray-100 h-screen overflow-hidden">
+            <div className="flex items-center justify-center px-4 py-44">
                 <div className="border-4 border-black p-16">
                     <div className="mb-2 flex justify-center">
                         <SiFreecodecamp size={80} />
@@ -50,9 +50,8 @@ export default function SignIn() {
                             <div>
                                 <button
                                     type="button"
-                                    className="mt-5 inline-flex w-full items-center justify-center bg-black px-3.5 py-2.5 font-semibold leading-7 
-                                            text-white hover:bg-black/80"
-                                >
+                                    className="mt-5 inline-flex w-full items-center justify-center border-2 border-orange-400 bg-amber-500 hover:bg-amber-500/80 
+                                    px-3.5 py-2 font-semibold leading-7 text-white">
                                     Sign In
                                 </button>
                             </div>
@@ -60,8 +59,9 @@ export default function SignIn() {
                         <div className="mt-3 space-y-3">
                             <button
                                 type="button"
-                                className="relative inline-flex w-full items-center justify-center border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
-                            >
+                                className="relative inline-flex w-full items-center justify-center border border-gray-400 bg-white 
+                                            px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 
+                                            hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none">
                                 <FcGoogle size={25} className="mr-2" />
                                 Sign in with Google
                             </button>

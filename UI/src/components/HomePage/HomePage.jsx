@@ -11,7 +11,7 @@ export default function HomePage() {
                 <p className="text-lg text-gray-900 mt-6 font-semibold">
                     Since 2014, more than 40,000 freeCodeCamp.org graduates have gotten <br /> jobs at tech companies including:
                 </p>
-                <div className="flex justify-center space-x-6 mt-4">
+                <div className="flex justify-center space-x-8 mt-4">
                     <FaApple size={40} className="text-gray-800" />
                     <FaGoogle size={40} className="text-gray-800" />
                     <FaMicrosoft size={40} className="text-gray-800" />

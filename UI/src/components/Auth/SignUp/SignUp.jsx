@@ -4,15 +4,21 @@ import { NavLink } from 'react-router-dom'
 
 export default function SignUp() {
     return (
-        <section className="bg-gray-100 h-screen">
+        <section className="bg-gray-100 h-screen overflow-hidden">
             <div className="flex items-center justify-center px-4 py-32">
                 <div className="border-4 border-black p-16">
                     <div className="mb-2 flex justify-center">
                         <SiFreecodecamp size={80} />
                     </div>
                     <h2 className="text-center text-3xl font-bold leading-tight text-black">
-                        Create Account at freeCodeCamp
+                        Sign up at freeCodeCamp
                     </h2>
+                    <p className="mt-2 text-center text-sm text-gray-600 font-medium ">
+                        Already have an account? &nbsp;
+                        <NavLink to="/signIn" className="font-semibold text-black">
+                            Login
+                        </NavLink>
+                    </p>
                     <form action="#" method="POST" className="mt-8">
                         <div className="space-y-5">
                             <div>
@@ -56,9 +62,8 @@ export default function SignUp() {
                             <div>
                                 <button
                                     type="button"
-                                    className="mt-5 inline-flex w-full items-center justify-center bg-black px-3.5 py-2.5 font-semibold leading-7 
-                                            text-white hover:bg-black/80"
-                                >
+                                    className="mt-5 inline-flex w-full items-center justify-center border-2 border-orange-400 bg-amber-500 hover:bg-amber-500/80 
+                                    px-3.5 py-2 font-semibold leading-7 text-white">
                                     Sign Up
                                 </button>
                             </div>

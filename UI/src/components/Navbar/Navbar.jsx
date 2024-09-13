@@ -13,7 +13,7 @@ export function NavBar() {
     }
 
     return (
-        <div className="relative w-full h-[3rem] bg-slate-900 font-mono">
+        <div className="fixed w-full h-[3rem] bg-slate-900 font-mono">
             <div className="mx-auto flex items-center justify-between px-3 py-1.5">
                 <div className="inline-flex items-center -ml-4">
                     <FaSearch className='relative left-6 text-gray-400' />
