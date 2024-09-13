@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 export default function SignUp() {
     return (
         <section className="bg-gray-100 h-screen overflow-hidden">
-            <div className="flex items-center justify-center px-4 py-32">
+            <div className="flex items-center justify-center px-4 py-44">
                 <div className="border-4 border-black p-16">
                     <div className="mb-2 flex justify-center">
                         <SiFreecodecamp size={80} />
@@ -68,17 +68,7 @@ export default function SignUp() {
                                 </button>
                             </div>
                         </div>
-                        <div className="mt-3 space-y-3">
-                            <button
-                                type="button"
-                                className="relative inline-flex w-full items-center justify-center border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
-                            >
-                                <FcGoogle size={25} className="mr-2" />
-                                Sign up with Google
-                            </button>
-                        </div>
                     </form>
-
                 </div>
             </div>
         </section>
