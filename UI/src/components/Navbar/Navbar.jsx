@@ -2,7 +2,7 @@ import React from 'react'
 import { SiFreecodecamp } from "react-icons/si";
 import { FaSearch } from "react-icons/fa";
 import { IoGlobeOutline } from "react-icons/io5";
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export function NavBar() {
 
@@ -21,9 +21,11 @@ export function NavBar() {
                         className="flex h-8 w-[500px] bg-gray-600 px-3 py-1 text-lg font-medium font-sans placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                         type="text" placeholder="     Search 10,700+ tutorials" />
                 </div>
-                <div className='absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center'>
-                    <h1 className='text-white text-2xl font-light mr-2'>freeCodeCamp</h1>
-                    <SiFreecodecamp size={35} className='text-white' />
+                <div className='absolute left-1/2 transform -translate-x-1/2'>
+                    <NavLink to='' className={`flex items-center justify-center`}>
+                        <h1 className='text-white text-2xl font-light mr-2'>freeCodeCamp</h1>
+                        <SiFreecodecamp size={35} className='text-white' />
+                    </NavLink>
                 </div>
                 <div className='inline-flex justify-center items-center space-x-4 text-white'>
                     <ul className='flex space-x-3 justify-center items-center'>
