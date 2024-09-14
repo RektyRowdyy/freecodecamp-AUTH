@@ -2,7 +2,7 @@ import passport from 'passport';
 import { Strategy } from 'passport-google-oauth20'
 import { GoogleUser } from '../models/googleUser.model.mjs';
 
-passport.serializeUser((user, done) => {    
+passport.serializeUser((user, done) => {   
     done(null, user);
 })
 

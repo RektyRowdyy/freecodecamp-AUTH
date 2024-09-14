@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { generateJWTGoogle, loginUser, registerUser } from "../controllers/user.controller.mjs";
+import { generateJWTGoogle, loginUser, logoutUser, registerUser } from "../controllers/user.controller.mjs";
 import passport from "passport";
 import '../strategies/google-strategy.mjs'
 import jwtAuth from "../middlewares/jwtAuth.middleware.mjs";
@@ -11,6 +11,9 @@ router.post('/register', registerUser);
 
 //Login User
 router.post('/login', loginUser);
+
+//Logout User
+router.get('/logout', logoutUser)
 
 //Google Auth
 router.get('/googleAuth', passport.authenticate('google', { scope: ['profile', 'email'] }));

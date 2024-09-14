@@ -7,7 +7,7 @@ import HomePage from './components/HomePage/HomePage.jsx'
 import SignIn from './components/Auth/SignIn/SignIn.jsx'
 import SignUp from './components/Auth/SignUp/SignUp.jsx'
 import Courses from './components/Courses/Courses.jsx'
-
+import ProtectedRoute from './utilities/ProtectedRoute.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <HomePage /> 
+        element: <HomePage />
       },
       {
         path: 'signIn',
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'courses',
-        element: <Courses />
+        element: <ProtectedRoute element={<Courses />} />
       }
     ]
   }
@@ -35,6 +35,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
   </StrictMode>,
 )

@@ -4,6 +4,7 @@ import { RiComputerLine } from "react-icons/ri";
 import { FaTools, FaJs, FaCode, FaChartBar, FaDatabase } from "react-icons/fa";
 
 export default function Courses() {
+    
     const [courses, setCourses] = useState([]);
     const iconMap = {
         RiComputerLine,
@@ -17,15 +18,14 @@ export default function Courses() {
     useEffect(() => {
         axios.get("http://localhost:8000/api/getAllCourses")
             .then((res) => {
-                console.log(res);
                 if (res.status === 200)
                     setCourses(res.data.data);
             })
             .catch((err) => {
                 console.log(err);
             });
-    }, []);
-
+    }, []);    
+    
     return (
         <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-5">
             <div className="text-center">

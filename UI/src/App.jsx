@@ -1,14 +1,39 @@
 import { Outlet } from 'react-router-dom'
 import './App.css'
 import { NavBar } from './components/Navbar/Navbar'
+import { useEffect, useState } from 'react'
+import axios from 'axios';
+import { AuthProvider } from './contexts/auth';
+import Toast from './components/Toast/Toast.jsx'
 
 function App() {
-    return(
-      <>
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const checkIsLoggedIn = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/auth', { withCredentials: true });
+      setIsLoggedIn(response.status === 200);
+    } catch (error) {
+      setIsLoggedIn(false);
+    } finally {
+      setIsLoading(false);
+    }
+
+  }
+
+  useEffect(() => checkIsLoggedIn, []);
+
+  return (
+    <>
+      <AuthProvider value={{ isLoggedIn, checkIsLoggedIn, isLoading }}>
         <NavBar />
+        <Toast />
         <Outlet />
-      </>
-    )
+      </AuthProvider>
+    </>
+  )
 }
 
 export default App

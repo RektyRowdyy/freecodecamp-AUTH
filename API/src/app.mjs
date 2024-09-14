@@ -20,7 +20,8 @@ app.use(session({
     }
 }))
 app.use(cors({
-    origin: "*"
+    origin: "http://localhost:5173",
+    credentials: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());

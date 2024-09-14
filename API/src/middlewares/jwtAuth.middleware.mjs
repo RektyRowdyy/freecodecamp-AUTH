@@ -14,7 +14,9 @@ const jwtAuth = (req, res, next) => {
         
         const user = jwt.verify(token, process.env.JWT_SECRET);
         req.user = user;
-        next();
+        return res.status(200).json(
+            new ApiResponse(200, {}, "Token is currently valid!")
+        );
 
     } catch (error) {
         res.clearCookie("token");

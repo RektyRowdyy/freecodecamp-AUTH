@@ -1,8 +1,12 @@
 import React from 'react';
 import { FaApple, FaGoogle, FaMicrosoft, FaSpotify, FaAmazon } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../contexts/auth.js'
 
 export default function HomePage() {
+
+    const { isLoggedIn } = useAuth();
+
     return (
         <div className="bg-gray-100 flex flex-col items-center justify-center min-h-screen px-6">
             <div>
@@ -21,7 +25,8 @@ export default function HomePage() {
                 </div>
             </div>
             <NavLink to="/courses">
-                <button className="mt-8 w-[450px] border-2 border-orange-400 bg-amber-500 text-black font-mono font-semibold py-2 px-6 text-lg">
+                <button disabled={!isLoggedIn} className={`mt-8 w-[450px] border-2 border-orange-400 bg-amber-500 text-black font-mono font-semibold 
+                                                            py-2 px-6 text-lg ${isLoggedIn ? 'cursor-pointer': 'cursor-not-allowed'}`}>
                     Checkout the courses! (it's free)
                 </button>
             </NavLink>

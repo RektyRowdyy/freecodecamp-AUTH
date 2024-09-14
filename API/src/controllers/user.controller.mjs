@@ -51,12 +51,13 @@ export const loginUser = async (req, res) => {
             { id: findUser.id },
             `${process.env.JWT_SECRET}`,
             {
-                expiresIn: "10s"
+                expiresIn: "1h"
             }
         )
         //cookie options
         const options = {
-            httpOnly: true
+            httpOnly: true,
+            expires: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24hrs
         };
         res.cookie("token", token, options)
         res.status(200).json(
@@ -70,28 +71,36 @@ export const loginUser = async (req, res) => {
     }
 }
 
+export const logoutUser = async (req, res) => {
+    try {
+        res.clearCookie("token");
+        return res.status(200).json(
+            new ApiResponse(200, {},"User Logged Out!")
+        )
+    } catch (error) {
+        throw new ApiError(500, "Something went wrong while loggin out!");
+    }
+}
+
 export const generateJWTGoogle = (req, res, next) => {
     try {
-        
         //generate JWT token and send it to client cookies
         const token = jwt.sign(
             { id: req.user.googleId },
             `${process.env.JWT_SECRET}`,
             {
-                expiresIn: "20s"
+                expiresIn: "1h"
             }
         )
         //cookie options
         const options = {
-            httpOnly: true
+            httpOnly: true,
+            expires: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24hrs
         };
         res.cookie("token", token, options);
-        res.status(201).json(
-            new ApiResponse(201, {}, `User LoggedIn Successfully!`)
-        )
+        res.status(201).redirect('http://localhost:5173/courses');
+        
     } catch (error) {
-        return res.status(500).json(
-            new ApiError(500, "Unable to LogIn/Register User using Google!")
-        );
+        return res.status(500).redirect('http://localhost:5173/signIn');
     }
 }

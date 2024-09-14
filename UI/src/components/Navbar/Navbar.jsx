@@ -1,15 +1,32 @@
 import React from 'react'
 import { SiFreecodecamp } from "react-icons/si";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaUserCircle } from "react-icons/fa";
 import { IoGlobeOutline } from "react-icons/io5";
 import { NavLink, useNavigate } from 'react-router-dom';
+import useAuth from '../../contexts/auth';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export function NavBar() {
 
     const navigate = useNavigate();
 
+    const { isLoggedIn, checkIsLoggedIn } = useAuth();
+
     function handleSignIn() {
         navigate('signIn');
+    }
+
+    async function logoutUser() {
+        await axios.get("http://localhost:8000/api/logout", {withCredentials: true})
+            .then((res) => {
+                checkIsLoggedIn();
+                toast.warn(res.data.message);
+                navigate('/signIn');
+            })
+            .catch((err) => {
+                toast.error(err.response.data.message);
+            })
     }
 
     return (
@@ -44,13 +61,29 @@ export function NavBar() {
                             </button>
                         </li>
                     </ul>
-                    <button
-                        type="button"
-                        className="border-2 border-orange-400 bg-amber-500 px-3 py-1 text-md font-semibold text-black shadow-sm"
-                        onClick={handleSignIn}
-                    >
-                        Sign In
-                    </button>
+                    {!isLoggedIn ?
+                        (<button
+                            type="button"
+                            className="border-2 border-orange-400 bg-amber-500 px-3 py-1 text-md font-semibold text-black shadow-sm"
+                            onClick={handleSignIn}
+                        >
+                            Sign In
+                        </button>)
+                        :
+                        (
+                            <>
+                                <span className="relative inline-block">
+                                    <FaUserCircle size={36} />
+                                </span>
+                                <button onClick={logoutUser}
+                                    type="button"
+                                    className="border-2 outline-white px-3 py-1 text-md font-semibold text-white shadow-sm"
+                                >
+                                    Logout
+                                </button>
+                            </>
+                        )
+                    }
                 </div>
             </div>
         </div>

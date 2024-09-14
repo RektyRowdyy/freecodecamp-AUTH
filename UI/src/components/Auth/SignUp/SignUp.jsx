@@ -1,7 +1,10 @@
 import { SiFreecodecamp } from "react-icons/si";
+import { FcGoogle } from "react-icons/fc";
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useState } from "react";
 import axios from 'axios';
+import Toast from "../../Toast/Toast";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
 
@@ -13,27 +16,35 @@ export default function SignUp() {
     });
 
     function handleChange(e) {
-        setFormData({ ...formData, [e.target.name]: e.target.value});
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-    async function handleSubmit(e) {
+    async function registerUser(e) {
         e.preventDefault();
 
-            //API Call to Register endpoint
-            await axios.post('http://localhost:8000/api/register', formData)
+        // API Call to Register endpoint
+        await axios.post('http://localhost:8000/api/register', formData, {withCredentials: true})
             .then((res) => {
-                // setTimeout(() => {
-                //     navigate('/signIn')
-                // }, 5 * 1000)
+                toast.success(res.data.message);
+                setTimeout(() => {
+                    navigate('/signIn')
+                }, 3 * 1000)
             })
             .catch((err) => {
-                console.log(err.response);
+                toast.error(err.response.data.message);
             })
+    }
+
+    async function googleSignIn() {
+        toast.info("You will be redirected to Google Auth!")
+        setTimeout(() => {
+            window.location.href = 'http://localhost:8000/api/googleAuth';
+        }, 3 * 1000)
     }
 
     return (
         <section className="bg-gray-100 h-screen overflow-hidden">
-            <div className="flex items-center justify-center px-4 py-44">
+            <div className="flex items-center justify-center px-4 py-36">
                 <div className="border-4 border-black p-16">
                     <div className="mb-2 flex justify-center">
                         <SiFreecodecamp size={80} />
@@ -47,7 +58,7 @@ export default function SignUp() {
                             Login
                         </NavLink>
                     </p>
-                    <form action="" method="POST" onSubmit={(e) => handleSubmit(e)} className="mt-8">
+                    <form action="" method="POST" onSubmit={(e) => registerUser(e)} className="mt-8">
                         <div className="space-y-5">
                             <div>
                                 <label htmlFor="name" className="text-base font-medium text-gray-900">
@@ -93,6 +104,16 @@ export default function SignUp() {
                                     className="mt-5 inline-flex w-full items-center justify-center border-2 border-orange-400 bg-amber-500 hover:bg-amber-500/80 
                                     px-3.5 py-2 font-semibold leading-7 text-white">
                                     Sign Up
+                                </button>
+                            </div>
+                            <div className="mt-3 space-y-3">
+                                <button
+                                    type="button" onClick={googleSignIn}
+                                    className="relative inline-flex w-full items-center justify-center border border-gray-400 bg-white 
+                                            px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 
+                                            hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none">
+                                    <FcGoogle size={25} className="mr-2" />
+                                    Sign up with Google
                                 </button>
                             </div>
                         </div>
