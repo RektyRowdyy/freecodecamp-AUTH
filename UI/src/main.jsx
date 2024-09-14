@@ -6,6 +6,7 @@ import './index.css'
 import HomePage from './components/HomePage/HomePage.jsx'
 import SignIn from './components/Auth/SignIn/SignIn.jsx'
 import SignUp from './components/Auth/SignUp/SignUp.jsx'
+import Courses from './components/Courses/Courses.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: 'signUp',
         element: <SignUp />
+      },
+      {
+        path: 'courses',
+        element: <Courses />
       }
     ]
   }

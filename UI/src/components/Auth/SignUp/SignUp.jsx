@@ -1,8 +1,36 @@
 import { SiFreecodecamp } from "react-icons/si";
-import { FcGoogle } from "react-icons/fc";
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useState } from "react";
+import axios from 'axios';
 
 export default function SignUp() {
+
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: ''
+    });
+
+    function handleChange(e) {
+        setFormData({ ...formData, [e.target.name]: e.target.value});
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+            //API Call to Register endpoint
+            await axios.post('http://localhost:8000/api/register', formData)
+            .then((res) => {
+                // setTimeout(() => {
+                //     navigate('/signIn')
+                // }, 5 * 1000)
+            })
+            .catch((err) => {
+                console.log(err.response);
+            })
+    }
+
     return (
         <section className="bg-gray-100 h-screen overflow-hidden">
             <div className="flex items-center justify-center px-4 py-44">
@@ -19,14 +47,14 @@ export default function SignUp() {
                             Login
                         </NavLink>
                     </p>
-                    <form action="#" method="POST" className="mt-8">
+                    <form action="" method="POST" onSubmit={(e) => handleSubmit(e)} className="mt-8">
                         <div className="space-y-5">
                             <div>
-                                <label htmlFor="" className="text-base font-medium text-gray-900">
+                                <label htmlFor="name" className="text-base font-medium text-gray-900">
                                     Name
                                 </label>
                                 <div className="mt-2">
-                                    <input
+                                    <input name="name" value={formData.name} onChange={(e) => handleChange(e)} required={true}
                                         className="flex h-10 w-full border border-black bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-0"
                                         type="text"
                                         placeholder="Name"
@@ -34,11 +62,11 @@ export default function SignUp() {
                                 </div>
                             </div>
                             <div>
-                                <label htmlFor="" className="text-base font-medium text-gray-900">
+                                <label htmlFor="email" className="text-base font-medium text-gray-900">
                                     Email address
                                 </label>
                                 <div className="mt-2">
-                                    <input
+                                    <input name="email" value={formData.email} onChange={(e) => handleChange(e)} required={true}
                                         className="flex h-10 w-full border border-black bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-0"
                                         type="email"
                                         placeholder="Email"
@@ -47,12 +75,12 @@ export default function SignUp() {
                             </div>
                             <div>
                                 <div className="flex items-center justify-between">
-                                    <label htmlFor="" className="text-base font-medium text-gray-900">
+                                    <label htmlFor="password" className="text-base font-medium text-gray-900">
                                         Password
                                     </label>
                                 </div>
                                 <div className="mt-2">
-                                    <input
+                                    <input name="password" value={formData.password} onChange={(e) => handleChange(e)} required={true}
                                         className="flex h-10 w-full border border-black bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-0"
                                         type="password"
                                         placeholder="Password"
@@ -61,7 +89,7 @@ export default function SignUp() {
                             </div>
                             <div>
                                 <button
-                                    type="button"
+                                    type="submit"
                                     className="mt-5 inline-flex w-full items-center justify-center border-2 border-orange-400 bg-amber-500 hover:bg-amber-500/80 
                                     px-3.5 py-2 font-semibold leading-7 text-white">
                                     Sign Up

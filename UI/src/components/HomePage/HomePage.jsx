@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaApple, FaGoogle, FaMicrosoft, FaSpotify, FaAmazon } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 export default function HomePage() {
     return (
@@ -19,9 +20,12 @@ export default function HomePage() {
                     <FaAmazon size={40} className="text-gray-800" />
                 </div>
             </div>
-            <button disabled={true} className="mt-8 w-[450px] border-2 border-orange-400 bg-amber-500 text-black font-mono font-semibold py-2 px-6 text-lg cursor-not-allowed">
-                Get started (it's free)
-            </button>
+            <NavLink to="/courses">
+                <button className="mt-8 w-[450px] border-2 border-orange-400 bg-amber-500 text-black font-mono font-semibold py-2 px-6 text-lg">
+                    Checkout the courses! (it's free)
+                </button>
+            </NavLink>
+
         </div>
     );
 }

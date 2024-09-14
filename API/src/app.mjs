@@ -1,14 +1,16 @@
-import express, { urlencoded } from 'express';
-import passport from 'passport';
+import express from 'express';
 import userRoutes from './routes/userRoutes.mjs';
-import session from 'express-session';
+import cors from 'cors';
+import cookieParser from 'cookie-parser'
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
-app.use(passport.initialize());
+app.use(cookieParser());
+app.use(cors({
+    origin: "*"
+}));
 
 //User Routes
 app.use("/api", userRoutes);
