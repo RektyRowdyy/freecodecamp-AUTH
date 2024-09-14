@@ -1,5 +1,6 @@
 import express from 'express';
 import userRoutes from './routes/userRoutes.mjs';
+import courseRoutes from './routes/courseRoutes.mjs';
 import cors from 'cors';
 import cookieParser from 'cookie-parser'
 import passport from 'passport';
@@ -26,5 +27,8 @@ app.use(passport.session());
 
 //User Routes
 app.use("/api", userRoutes);
+
+//Courses Routes
+app.use("/api", courseRoutes);
 
 export { app };
