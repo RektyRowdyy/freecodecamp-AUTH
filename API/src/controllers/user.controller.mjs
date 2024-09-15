@@ -98,9 +98,9 @@ export const generateJWTGoogle = (req, res, next) => {
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24hrs
         };
         res.cookie("token", token, options);
-        res.status(201).redirect('http://localhost:5173/courses');
+        res.status(201).redirect(`${process.env.UI_URL}/courses`);
         
     } catch (error) {
-        return res.status(500).redirect('http://localhost:5173/signIn');
+        return res.status(500).redirect(`${process.env.UI_URL}/signIn`);
     }
 }

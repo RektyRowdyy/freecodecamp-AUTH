@@ -19,7 +19,8 @@ router.get('/logout', logoutUser)
 router.get('/googleAuth', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 //Google Callback
-router.get('/googleCallback', passport.authenticate('google'), generateJWTGoogle);
+router.get('/googleCallback', passport.authenticate('google', {failureRedirect: `${process.env.UI_URL}/signIn`}), generateJWTGoogle);
+
 
 //Auth { route to check if the user is loggedIn or not }
 router.get('/auth', jwtAuth);
