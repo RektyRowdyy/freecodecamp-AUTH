@@ -20,6 +20,7 @@ export function NavBar() {
     async function logoutUser() {
         await axios.get(`${import.meta.env.VITE_API_URL}/api/logout`, {withCredentials: true})
             .then((res) => {
+                window.location.reload();
                 checkIsLoggedIn();
                 toast.warn(res.data.message);
                 navigate('/');
