@@ -13,12 +13,12 @@ export default function ProtectedRoute({ element }) {
 
     useEffect(() => {
         if (!isLoading && !isLoggedIn) {
-            toast.warn("Your session expired!");
+            toast.warn("Your session expired or does not exists!");
         }
     }, [isLoggedIn, isLoading]);
 
     if(isLoading) {
-        return <div>Loading....</div>
+        return <div className="flex items-center justify-center">Loading....</div>
     }
     if (!isLoggedIn) {
         return <Navigate to="/signIn" />
