@@ -11,24 +11,18 @@ export function NavBar() {
 
     const navigate = useNavigate();
 
-    const { isLoggedIn, checkIsLoggedIn } = useAuth();
+    const { isLoggedIn, checkIsLoggedIn, logOut } = useAuth();
 
     function handleSignIn() {
         navigate('signIn');
     }
 
-    async function logoutUser() {
-        await axios.get(`${import.meta.env.VITE_API_URL}/api/logout`, { withCredentials: true })
-            .then((res) => {
-                checkIsLoggedIn();
-                toast.warn(res.data.message);
-                navigate('/');
-            })
-            .catch((err) => {
-                toast.error(err.response.data.message);
-            })
+    function logoutUser() { 
+        logOut();
+        toast.warn("User Logged Out Successfully!");
+        navigate('/');
     }
-
+    
     return (
         <div className="fixed w-full h-[3rem] bg-slate-900 font-mono">
             <div className="mx-auto flex items-center justify-between px-3 py-1.5">

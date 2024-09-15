@@ -3,7 +3,6 @@ import { FcGoogle } from "react-icons/fc";
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useState } from "react";
 import axios from 'axios';
-import Toast from "../../Toast/Toast";
 import { toast } from "react-toastify";
 
 export default function SignUp() {
