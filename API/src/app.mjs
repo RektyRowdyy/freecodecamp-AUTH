@@ -13,11 +13,14 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(session({
-    secret: 'iAmBatman',
-    saveUninitialized: true,
+    secret: `${process.env.SECRET}`,
+    saveUninitialized: false,
     resave: false,
     cookie: {
-        maxAge: 60000 * 60 * 24
+        maxAge: 60000 * 60 * 24, //24 hrs
+        httpOnly: true,
+        secure: true,
+        sameSite: 'None'
     }
 }));
 app.use(cors({

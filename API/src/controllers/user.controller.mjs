@@ -49,7 +49,7 @@ export const loginUser = async (req, res) => {
         //generate JWT token and send it to client cookies
         const token = jwt.sign(
             { id: findUser.id },
-            `${process.env.JWT_SECRET}`,
+            `${process.env.SECRET}`,
             {
                 expiresIn: "1h"
             }
@@ -89,7 +89,7 @@ export const generateJWTGoogle = (req, res, next) => {
         //generate JWT token and send it to client cookies
         const token = jwt.sign(
             { id: req.user.googleId },
-            `${process.env.JWT_SECRET}`,
+            `${process.env.SECRET}`,
             {
                 expiresIn: "1h"
             }
