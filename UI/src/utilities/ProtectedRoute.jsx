@@ -9,7 +9,7 @@ export default function ProtectedRoute({ element }) {
 
     useEffect(() => {
         checkIsLoggedIn();
-    }, []);
+    }, [isLoggedIn]);
 
     useEffect(() => {
         if (!isLoading && !isLoggedIn) {
