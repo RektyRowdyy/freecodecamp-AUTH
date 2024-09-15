@@ -18,12 +18,11 @@ export function NavBar() {
     }
 
     async function logoutUser() {
-        await axios.get(`${import.meta.env.VITE_API_URL}/api/logout`, {withCredentials: true})
+        await axios.get(`${import.meta.env.VITE_API_URL}/api/logout`, { withCredentials: true })
             .then((res) => {
                 checkIsLoggedIn();
                 toast.warn(res.data.message);
                 navigate('/');
-                window.location.reload();
             })
             .catch((err) => {
                 toast.error(err.response.data.message);

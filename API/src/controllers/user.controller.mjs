@@ -51,7 +51,7 @@ export const loginUser = async (req, res) => {
             { id: findUser.id },
             `${process.env.SECRET}`,
             {
-                expiresIn: "1h"
+                expiresIn: "1d"
             }
         )
         //cookie options
@@ -95,7 +95,7 @@ export const generateJWTGoogle = (req, res, next) => {
             { id: req.user.googleId },
             `${process.env.SECRET}`,
             {
-                expiresIn: "1h"
+                expiresIn: "1d"
             }
         )
         //cookie options
