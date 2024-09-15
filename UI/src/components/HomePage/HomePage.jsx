@@ -5,11 +5,7 @@ import useAuth from '../../contexts/auth.js'
 
 export default function HomePage() {
 
-    const { isLoggedIn, checkIsLoggedIn } = useAuth();
-
-    useEffect(() => {
-        checkIsLoggedIn()
-    },[]);
+    const { isLoggedIn } = useAuth();
 
     return (
         <div className="bg-gray-100 flex flex-col items-center justify-center min-h-screen px-6">
