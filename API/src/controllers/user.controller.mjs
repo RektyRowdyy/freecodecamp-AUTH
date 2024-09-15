@@ -57,6 +57,8 @@ export const loginUser = async (req, res) => {
         //cookie options
         const options = {
             httpOnly: true,
+            secure: true,
+            sameSite: 'None',
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24hrs
         };
         res.cookie("token", token, options)
