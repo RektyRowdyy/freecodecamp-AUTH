@@ -8,7 +8,6 @@ export default function HomePage() {
     const { isLoggedIn, checkIsLoggedIn } = useAuth();
 
     useEffect(() => {
-        console.log("checked in homePage");
         checkIsLoggedIn();
     }, [isLoggedIn]);
 

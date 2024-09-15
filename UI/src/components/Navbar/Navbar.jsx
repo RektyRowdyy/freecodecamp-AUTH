@@ -11,16 +11,11 @@ export function NavBar() {
 
     const navigate = useNavigate();
 
-    const { isLoggedIn, checkIsLoggedIn, logOut } = useAuth();
+    const { isLoggedIn, logOut } = useAuth();
 
     function handleSignIn() {
         navigate('signIn');
     }
-
-    useEffect(() => {
-        console.log('in nav');
-        checkIsLoggedIn();
-    },[isLoggedIn]);
 
     function logoutUser() { 
         logOut();
