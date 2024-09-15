@@ -75,7 +75,7 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
     try {
-        res.clearCookie("token");
+        res.clearCookie("token", {httpOnly: true, secure: true, sameSite: 'None'});
         return res.status(200).json(
             new ApiResponse(200, {}, "User Logged Out!")
         )
