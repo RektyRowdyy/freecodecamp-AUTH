@@ -17,6 +17,11 @@ export function NavBar() {
         navigate('signIn');
     }
 
+    useEffect(() => {
+        console.log('in nav');
+        checkIsLoggedIn();
+    },[isLoggedIn]);
+
     function logoutUser() { 
         logOut();
         toast.warn("User Logged Out Successfully!");
