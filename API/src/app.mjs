@@ -11,6 +11,10 @@ const app = express();
 //global middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cors({
+    origin: `${process.env.UI_URL}`,
+    credentials: true
+}));
 app.use(cookieParser());
 app.use(session({
     secret: `${process.env.SECRET}`,
@@ -22,10 +26,6 @@ app.use(session({
         secure: true,
         sameSite: 'None'
     }
-}));
-app.use(cors({
-    origin: `${process.env.UI_URL}`,
-    credentials: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
