@@ -77,7 +77,7 @@ export const logoutUser = async (req, res) => {
     try {
         res.clearCookie("token");
         return res.status(200).json(
-            new ApiResponse(200, {},"User Logged Out!")
+            new ApiResponse(200, {}, "User Logged Out!")
         )
     } catch (error) {
         throw new ApiError(500, "Something went wrong while loggin out!");
@@ -97,11 +97,13 @@ export const generateJWTGoogle = (req, res, next) => {
         //cookie options
         const options = {
             httpOnly: true,
+            secure: true,
+            sameSite: 'None',
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24hrs
         };
         res.cookie("token", token, options);
         res.status(201).redirect(`${process.env.UI_URL}/courses`);
-        
+
     } catch (error) {
         return res.status(500).redirect(`${process.env.UI_URL}/signIn`);
     }
