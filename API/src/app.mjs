@@ -5,6 +5,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser'
 import passport from 'passport';
 import session from 'express-session';
+import { ApiResponse } from './utils/ApiResponse.mjs';
 const app = express();
 
 //global middlewares
@@ -25,6 +26,13 @@ app.use(cors({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+//base request for testing
+app.get("/", (req, res) => {
+    res.status(200).json(
+        new ApiResponse(200, {}, "Welcome to FreeCodeCamp")
+    )
+});
 
 //User Routes
 app.use("/api", userRoutes);
