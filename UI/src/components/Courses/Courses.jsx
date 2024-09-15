@@ -16,7 +16,7 @@ export default function Courses() {
     };
 
     useEffect(() => {
-        axios.get("http://localhost:8000/api/getAllCourses")
+        axios.get(`${import.meta.env.VITE_API_URL}/api/getAllCourses`)
             .then((res) => {
                 if (res.status === 200)
                     setCourses(res.data.data);

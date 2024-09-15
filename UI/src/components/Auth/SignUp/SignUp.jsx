@@ -23,7 +23,7 @@ export default function SignUp() {
         e.preventDefault();
 
         // API Call to Register endpoint
-        await axios.post('http://localhost:8000/api/register', formData, {withCredentials: true})
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, formData, {withCredentials: true})
             .then((res) => {
                 toast.success(res.data.message);
                 setTimeout(() => {
@@ -38,7 +38,7 @@ export default function SignUp() {
     async function googleSignIn() {
         toast.info("You will be redirected to Google Auth!")
         setTimeout(() => {
-            window.location.href = 'http://localhost:8000/api/googleAuth';
+            window.location.href = `${import.meta.env.VITE_API_URL}/api/googleAuth`;
         }, 3 * 1000)
     }
 

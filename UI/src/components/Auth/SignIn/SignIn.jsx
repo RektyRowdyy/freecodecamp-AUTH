@@ -18,12 +18,11 @@ export default function SignIn() {
     function handleChange(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
-
     async function loginUser(e) {
         e.preventDefault();
 
         //API endpoint for login
-        await axios.post("http://localhost:8000/api/login", formData, { withCredentials: true })
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, formData, { withCredentials: true })
             .then((res) => {
                 checkIsLoggedIn();
                 toast.success(res.data.message);
@@ -39,7 +38,7 @@ export default function SignIn() {
     async function googleSignIn() {
         toast.info("You will be redirected to Google Auth!")
         setTimeout(() => {
-            window.location.href = 'http://localhost:8000/api/googleAuth';
+            window.location.href = `${import.meta.env.VITE_API_URL}/api/googleAuth`;
         }, 3 * 1000)
     }
 

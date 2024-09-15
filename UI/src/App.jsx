@@ -13,7 +13,7 @@ function App() {
 
   const checkIsLoggedIn = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/auth', { withCredentials: true });
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth`, { withCredentials: true });
       setIsLoggedIn(response.status === 200);
     } catch (error) {
       setIsLoggedIn(false);
