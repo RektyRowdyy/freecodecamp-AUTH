@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SiFreecodecamp } from "react-icons/si";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 import { IoGlobeOutline } from "react-icons/io5";
@@ -17,12 +17,17 @@ export function NavBar() {
         navigate('signIn');
     }
 
+    useEffect(() => {
+        checkIsLoggedIn();
+        // console.log(isLoggedIn);
+    }, [logoutUser]);
+
     async function logoutUser() {
         await axios.get(`${import.meta.env.VITE_API_URL}/api/logout`, {withCredentials: true})
             .then((res) => {
-                checkIsLoggedIn();
                 toast.warn(res.data.message);
                 navigate('/');
+                window.location.reload();
             })
             .catch((err) => {
                 toast.error(err.response.data.message);
