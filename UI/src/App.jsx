@@ -13,14 +13,16 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   const checkIsLoggedIn = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth`, { withCredentials: true });
-      setIsLoggedIn(response.status === 200);
-    } catch (error) {
+    await axios.get(`${import.meta.env.VITE_API_URL}/api/auth`, { withCredentials: true })
+    .then((res) => {
+      setIsLoggedIn(res.status === 200);
+    })
+    .catch(() => {
       setIsLoggedIn(false);
-    } finally {
+    })
+    .finally(() => {
       setIsLoading(false);
-    }
+    })
 
   }
 
