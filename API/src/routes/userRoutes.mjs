@@ -21,7 +21,7 @@ router.get('/googleAuth', passport.authenticate('google', { scope: ['profile', '
 //Google Callback
 router.get('/googleCallback', passport.authenticate('google'), generateJWTGoogle);
 
-//Auth
+//Auth { route to check if the user is loggedIn or not }
 router.get('/auth', jwtAuth);
 
 export default router;

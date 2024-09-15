@@ -5,9 +5,9 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser'
 import passport from 'passport';
 import session from 'express-session';
-
 const app = express();
 
+//global middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -18,7 +18,7 @@ app.use(session({
     cookie: {
         maxAge: 60000 * 60 * 24
     }
-}))
+}));
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true

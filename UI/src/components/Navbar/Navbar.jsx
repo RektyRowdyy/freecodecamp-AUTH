@@ -22,7 +22,7 @@ export function NavBar() {
             .then((res) => {
                 checkIsLoggedIn();
                 toast.warn(res.data.message);
-                navigate('/signIn');
+                navigate('/');
             })
             .catch((err) => {
                 toast.error(err.response.data.message);
