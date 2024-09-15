@@ -25,13 +25,13 @@ function App() {
   }
 
   const logOut = async () => {
-    await axios.get(`${import.meta.env.VITE_API_URL}/api/logout`, { withCredentials: true })
-      .then((res) => {
-        setIsLoggedIn(false);
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      })
+    try {
+      await axios.get(`${import.meta.env.VITE_API_URL}/api/logout`, { withCredentials: true })
+      checkIsLoggedIn();
+      setIsLoggedIn(false);
+    } catch (error) {
+      toast.error(err.response?.data?.message || "Logout failed.");
+    }
   }
 
   useEffect(() => checkIsLoggedIn, []);
