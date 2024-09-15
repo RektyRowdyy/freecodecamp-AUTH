@@ -7,8 +7,8 @@ const jwtAuth = (req, res, next) => {
         const token = req.cookies.token;
         // Check if token exists
         if (!token) {
-            return res.status(400).json(
-                new ApiResponse(400, {}, "Token does not exist!")
+            return res.status(202).json(
+                new ApiResponse(202, {}, "Token does not exist!")
             );
         }
         
