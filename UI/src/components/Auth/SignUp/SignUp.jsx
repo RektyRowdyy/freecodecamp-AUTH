@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useState } from "react";
 import axios from 'axios';
 import { toast } from "react-toastify";
-import validateName, { validateEmail, validatePassword } from "../../../utilities/Validations";
+import validateName, { validateEmail, validatePassword } from "../../../utilities/Validations.jsx";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function SignUp() {

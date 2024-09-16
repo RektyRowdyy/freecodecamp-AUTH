@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import useAuth from "../../../contexts/auth.js";
-import { validateEmail, validatePassword } from "../../../utilities/Validations.js";
+import { validateEmail, validatePassword } from "../../../utilities/Validations.jsx";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function SignIn() {
