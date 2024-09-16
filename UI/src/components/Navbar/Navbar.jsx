@@ -15,11 +15,13 @@ export function NavBar() {
         navigate('signIn');
     }
 
-    function logoutUser() { 
+    function logoutUser() {
         logOut();
-        navigate('/');
+        setTimeout(() => {
+            navigate('/signin');
+        }, 3 * 1000)
     }
-    
+
     return (
         <div className="fixed w-full h-[3rem] bg-slate-900 font-mono">
             <div className="mx-auto flex items-center justify-between px-3 py-1.5">
