@@ -18,7 +18,7 @@ export function NavBar() {
     function logoutUser() {
         logOut();
         setTimeout(() => {
-            navigate('/signin');
+            navigate('/');
         }, 3 * 1000)
     }
 
