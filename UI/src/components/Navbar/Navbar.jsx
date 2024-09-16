@@ -4,8 +4,6 @@ import { FaSearch, FaUserCircle } from "react-icons/fa";
 import { IoGlobeOutline } from "react-icons/io5";
 import { NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../contexts/auth';
-import axios from 'axios';
-import { toast } from 'react-toastify';
 
 export function NavBar() {
 
@@ -19,7 +17,6 @@ export function NavBar() {
 
     function logoutUser() { 
         logOut();
-        toast.warn("User Logged Out Successfully!");
         navigate('/');
     }
     
