@@ -13,7 +13,7 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 
 //Logout User
-router.post('/logout', logoutUser)
+router.get('/logout', logoutUser)
 
 //Google Auth
 router.get('/googleAuth', passport.authenticate('google', { scope: ['profile', 'email'] }));
