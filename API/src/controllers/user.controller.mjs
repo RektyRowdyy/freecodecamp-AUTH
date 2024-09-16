@@ -76,6 +76,8 @@ export const loginUser = async (req, res) => {
 export const logoutUser = async (req, res) => {
     try {
         res.clearCookie("token", {
+            domain: `freecodecamp-api-blond.vercel.app`,
+            path: '/',
             httpOnly: true,
             secure: true,
             sameSite: 'None',
@@ -84,6 +86,7 @@ export const logoutUser = async (req, res) => {
             new ApiResponse(200, {}, "User Logged Out!")
         )
     } catch (error) {
+        console.log(error);
         throw new ApiError(500, "Something went wrong while loggin out!");
     }
 }
