@@ -4,10 +4,13 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useState } from "react";
 import axios from 'axios';
 import { toast } from "react-toastify";
+import validateName, { validateEmail, validatePassword } from "../../../utilities/Validations";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function SignUp() {
 
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -20,6 +23,11 @@ export default function SignUp() {
 
     async function registerUser(e) {
         e.preventDefault();
+
+        //validations
+        if(!validateName(formData.name)) return toast.error('Name is Required!');
+        if(!validateEmail(formData.email)) return toast.error('Invalid email format.');
+        if(!validatePassword(formData.password)) return toast.error('Password must be at least 6 characters.');
 
         // API Call to Register endpoint
         await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, formData, {withCredentials: true})
@@ -39,6 +47,10 @@ export default function SignUp() {
         setTimeout(() => {
             window.location.href = `${import.meta.env.VITE_API_URL}/api/googleAuth`;
         }, 3 * 1000)
+    }
+
+    function togglePassword() {
+        setShowPassword((prev) => !prev);
     }
 
     return (
@@ -64,7 +76,7 @@ export default function SignUp() {
                                     Name
                                 </label>
                                 <div className="mt-2">
-                                    <input name="name" value={formData.name} onChange={(e) => handleChange(e)} required={true}
+                                    <input name="name" value={formData.name} onChange={(e) => handleChange(e)}
                                         className="flex h-10 w-full border border-black bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-0"
                                         type="text"
                                         placeholder="Name"
@@ -76,9 +88,9 @@ export default function SignUp() {
                                     Email address
                                 </label>
                                 <div className="mt-2">
-                                    <input name="email" value={formData.email} onChange={(e) => handleChange(e)} required={true}
+                                    <input name="email" value={formData.email} onChange={(e) => handleChange(e)}
                                         className="flex h-10 w-full border border-black bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-0"
-                                        type="email"
+                                        type="text"
                                         placeholder="Email"
                                     />
                                 </div>
@@ -89,12 +101,17 @@ export default function SignUp() {
                                         Password
                                     </label>
                                 </div>
-                                <div className="mt-2">
-                                    <input name="password" value={formData.password} onChange={(e) => handleChange(e)} required={true}
+                                <div className="mt-2 relative">
+                                    <input name="password" value={formData.password} onChange={(e) => handleChange(e)}
                                         className="flex h-10 w-full border border-black bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-0"
-                                        type="password"
+                                        type={showPassword ? 'text' : 'password'}
                                         placeholder="Password"
                                     />
+                                    {showPassword ? (
+                                        <FaEye size={15} className="absolute inset-y-0 top-3 right-2 flex items-center justify-center" onClick={togglePassword} />
+                                    ) : (
+                                        <FaEyeSlash size={15} className="absolute inset-y-0 top-3 right-2 flex items-center justify-center" onClick={togglePassword} />
+                                    )}
                                 </div>
                             </div>
                             <div>

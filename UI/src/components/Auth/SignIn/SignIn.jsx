@@ -5,10 +5,13 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import useAuth from "../../../contexts/auth.js";
+import { validateEmail, validatePassword } from "../../../utilities/Validations.js";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function SignIn() {
 
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -20,6 +23,10 @@ export default function SignIn() {
     }
     async function loginUser(e) {
         e.preventDefault();
+
+        //validations
+        if (!validateEmail(formData.email)) return toast.error('Invalid email format.');
+        if (!validatePassword(formData.password)) return toast.error('Password must be at least 6 characters.');
 
         //API endpoint for login
         await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, formData, { withCredentials: true })
@@ -40,6 +47,10 @@ export default function SignIn() {
         setTimeout(() => {
             window.location.href = `${import.meta.env.VITE_API_URL}/api/googleAuth`;
         }, 3 * 1000)
+    }
+
+    function togglePassword() {
+        setShowPassword((prev) => !prev);
     }
 
     return (
@@ -65,9 +76,9 @@ export default function SignIn() {
                                     Email address
                                 </label>
                                 <div className="mt-2">
-                                    <input name="email" value={formData.email} onChange={(e) => handleChange(e)} required={true}
+                                    <input name="email" value={formData.email} onChange={(e) => handleChange(e)}
                                         className="flex h-10 w-full border border-black bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-0"
-                                        type="email"
+                                        type="text"
                                         placeholder="Email"
                                     />
                                 </div>
@@ -78,12 +89,17 @@ export default function SignIn() {
                                         Password
                                     </label>
                                 </div>
-                                <div className="mt-2">
-                                    <input name="password" value={formData.password} onChange={(e) => handleChange(e)} required={true}
+                                <div className="mt-2 relative">
+                                    <input name="password" value={formData.password} onChange={(e) => handleChange(e)}
                                         className="flex h-10 w-full border border-black bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-0"
-                                        type="password"
+                                        type={showPassword ? 'text' : 'password'}
                                         placeholder="Password"
                                     />
+                                    {showPassword ? (
+                                        <FaEye size={15} className="absolute inset-y-0 top-3 right-2 flex items-center justify-center" onClick={togglePassword} />
+                                    ) : (
+                                        <FaEyeSlash size={15} className="absolute inset-y-0 top-3 right-2 flex items-center justify-center" onClick={togglePassword} />
+                                    )}
                                 </div>
                             </div>
                             <div>
