@@ -56,8 +56,6 @@ export const loginUser = async (req, res) => {
         )
         //cookie options
         const options = {
-            domain: `${process.env.API_URL}`,
-            path: '/',
             httpOnly: true,
             secure: true,
             sameSite: 'None',
@@ -78,12 +76,9 @@ export const loginUser = async (req, res) => {
 export const logoutUser = async (req, res) => {
     try {
         res.clearCookie("token", {
-            domain: `${process.env.API_URL}`,
-            path: '/',
             httpOnly: true,
             secure: true,
             sameSite: 'None',
-            expires: new Date(0)
         });
         return res.status(200).json(
             new ApiResponse(200, {}, "User Logged Out!")
@@ -105,8 +100,6 @@ export const generateJWTGoogle = (req, res, next) => {
         )
         //cookie options
         const options = {
-            domain: `${process.env.API_URL}`,
-            path: '/',
             httpOnly: true,
             secure: true,
             sameSite: 'None',
