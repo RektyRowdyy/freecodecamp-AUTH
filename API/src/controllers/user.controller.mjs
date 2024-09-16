@@ -75,13 +75,20 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
     try {
-        res.clearCookie("token", {
-            domain: `freecodecamp-api-blond.vercel.app`,
-            path: '/',
+        // res.clearCookie("token", {
+        //     // domain: `freecodecamp-api-blond.vercel.app`,
+        //     path: '/',
+        //     httpOnly: true,
+        //     secure: true,
+        //     sameSite: 'None',
+        // });
+        const options = {
             httpOnly: true,
             secure: true,
             sameSite: 'None',
-        });
+            expires: new Date(0),
+        };
+        res.cookie("token", '', options);
         return res.status(200).json(
             new ApiResponse(200, {}, "User Logged Out!")
         )
