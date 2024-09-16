@@ -30,9 +30,10 @@ function App() {
     try {
       await axios.get(`${import.meta.env.VITE_API_URL}/api/logout`, { withCredentials: true })
       .then((res) => {
-        checkIsLoggedIn();
+        // checkIsLoggedIn();
+        setIsLoggedIn(false);
       })
-      setIsLoggedIn(false);
+      
     } catch (error) {
       toast.error(err.response?.data?.message || "Logout failed.");
     }
