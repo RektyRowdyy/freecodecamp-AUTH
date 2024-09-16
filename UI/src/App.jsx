@@ -28,7 +28,7 @@ function App() {
       await axios.get(`${import.meta.env.VITE_API_URL}/api/logout`, { withCredentials: true })
       setIsLoggedIn(false);
       toast.warn("User Logged Out Successfully!");
-      await checkIsLoggedIn();
+      // await checkIsLoggedIn();
     } catch (error) {
       toast.error(err.response?.data?.message || "Logout failed.");
     }

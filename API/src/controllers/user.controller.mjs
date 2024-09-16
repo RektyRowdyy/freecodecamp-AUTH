@@ -60,7 +60,6 @@ export const loginUser = async (req, res) => {
             secure: true,
             sameSite: 'None',
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24hrs
-            domain: '.vercel.app',
             path: "/"
         };
         res.cookie("token", token, options)
@@ -82,7 +81,6 @@ export const logoutUser = async (req, res) => {
             secure: true,
             sameSite: 'None',
             expires: new Date(0),
-            domain: '.vercel.app',
             path: "/"
         };
         res.cookie("token", '', options);
@@ -111,7 +109,6 @@ export const generateJWTGoogle = (req, res, next) => {
             secure: true,
             sameSite: 'None',
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24hrs
-            domain: '.vercel.app',
             path: "/"
         };
         res.cookie("token", token, options);
