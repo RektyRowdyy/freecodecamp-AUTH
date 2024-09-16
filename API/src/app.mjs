@@ -22,10 +22,9 @@ app.use(session({
     resave: false,
     cookie: {
         maxAge: 60000 * 60 * 24, //24 hrs
-        httpOnly: false,
+        httpOnly: true,
         secure: true,
         sameSite: 'None',
-        domain: `https://freecodecamp-api-blond.vercel.app/`
     }
 }));
 app.use(passport.initialize());
