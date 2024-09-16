@@ -83,6 +83,7 @@ export const logoutUser = async (req, res) => {
             expires: new Date(0),
             path: "/"
         };
+        res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         res.cookie("token", null, options);
         return res.status(200).json(
             new ApiResponse(200, {}, "User Logged Out!")
