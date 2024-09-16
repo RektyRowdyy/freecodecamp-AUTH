@@ -24,7 +24,8 @@ app.use(session({
         maxAge: 60000 * 60 * 24, //24 hrs
         httpOnly: true,
         secure: true,
-        sameSite: 'None'
+        sameSite: 'None',
+        domain: `${process.env.API_URL}`
     }
 }));
 app.use(passport.initialize());
