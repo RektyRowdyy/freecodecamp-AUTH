@@ -3,7 +3,6 @@
 
 Check live demonstration [here](https://freecodecamp-ui.vercel.app/)
 
-![1](https://github.com/user-attachments/assets/9cbba614-0c3a-47cb-8df0-4e15404954cf)
 # FreeCodeCamp - AUTH
 
 This project replicates the FreeCodeCamp layout and implements a user authentication & authorization system with sign-in and sign-up functionality using Node.js Express.js, and MongoDB. 
