@@ -25,7 +25,7 @@ app.use(session({
         httpOnly: true,
         secure: true,
         sameSite: 'None',
-        domain: `${process.env.API_URL}`
+        domain: `https://freecodecamp-api-blond.vercel.app/`
     }
 }));
 app.use(passport.initialize());

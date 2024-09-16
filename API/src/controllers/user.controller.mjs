@@ -56,6 +56,7 @@ export const loginUser = async (req, res) => {
         )
         //cookie options
         const options = {
+            domain: `https://freecodecamp-api-blond.vercel.app/`,
             httpOnly: true,
             secure: true,
             sameSite: 'None',
@@ -83,6 +84,7 @@ export const logoutUser = async (req, res) => {
         //     sameSite: 'None',
         // });
         const options = {
+            domain: `https://freecodecamp-api-blond.vercel.app/`,
             httpOnly: true,
             secure: true,
             sameSite: 'None',
@@ -110,6 +112,7 @@ export const generateJWTGoogle = (req, res, next) => {
         )
         //cookie options
         const options = {
+            domain: `https://freecodecamp-api-blond.vercel.app/`,
             httpOnly: true,
             secure: true,
             sameSite: 'None',
